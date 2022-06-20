@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'cc-view-child';
 
+  @ViewChild(GalleryComponent) gridOfPictures: GalleryComponent;
+
   addNewPicture() {
-    console.log('added new picture');
+    this.gridOfPictures.pictures.unshift(this.gridOfPictures.generateImage())
   }
 
   removeFirstPicture() {
     console.log('removed first picture');
+    this.gridOfPictures.pictures.shift()
   }
 }
